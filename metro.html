@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>Metro Fare</title>
+</head>
+
+<body>
+    <script>
+        var src = new Array();
+        src[0] = "Botanical Garden";
+        src[1] = "Noida Sec 17";
+        src[2] = "Noida Sec 18";
+        src[3] = "New Ashok Nagar";
+        src[4] = "Mayur Vihar";
+        src[5] = "Akshardahm";
+        src[6] = "Yamuna Bank";
+        src[7] = "Rajiv Chowk";
+        //document.getElementById("station1").innerHTML = src;
+
+        var dst = new Array();
+        dst[0] = "Botanical Garden";
+        dst[1] = "Noida Sec 17";
+        dst[2] = "Noida Sec 18";
+        dst[3] = "New Ashok Nagar";
+        dst[4] = "Mayur Vihar";
+        dst[5] = "Akshardahm";
+        dst[6] = "Yamuna Bank";
+        dst[7] = "Rajiv Chowk";
+        //document.getElementById("station2").innerHTML = dst;
+
+        function m() {
+            src_station_name = document.getElementById("demo").value;
+            dest_station_name = document.getElementById("demo1").value;
+            //coupon
+            coupon = document.getElementById("demo2").value;
+            src_station = src.indexOf(src_station_name)
+            dest_station = dst.indexOf(dest_station_name)
+            var fare = 0;
+            fare = fare + src_station - dest_station;
+            fare = fare * 10;
+            document.getElementById("final_fare").innerHTML = "Your fare :" + Math.abs(fare);
+            g_fare = fare + fare * 4.85 / 100;
+            document.getElementById("gst_fare").innerHTML = "Your final fare after applying gst is :" + Math.abs(g_fare);
+            // code change here getting the coupon and calculating the discount amount
+            coupon_selected = document.getElementById('demo2').value
+            discount_amount = 0;
+            switch (coupon_selected) {
+                case 'Super20':
+                    discount_amount = 2;
+                    break;
+                case 'Flat50':
+                    discount_amount = 5;
+                    break;
+                case 'New10':
+                    discount_amount = 1;
+                    break;
+                default:
+                    break;
+            }
+            c_fare = Math.abs(g_fare) - Math.abs(discount_amount);
+
+            document.getElementById("c_fare").innerHTML = "After applying coupon :" + Math.abs(c_fare);
+        }
+    </script>
+
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+        
+        li {
+            float: left;
+        }
+        
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        
+        li a:hover:not(.active) {
+            background-color: #111;
+        }
+        
+        .active {
+            background-color: #4CAF50;
+        }
+    </style>
+    </head>
+
+    <body>
+
+        <ul>
+            <li><a class="active" href="#home">Home</a></li>
+            <li><a href="#news">Fare Calculation</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+
+        <div class="jumbotron" id="about">
+            <h1 class="display-4">Metro Fare</h1>
+            <hr class="my-4">
+            <p class="lead">The Delhi Metro is a rapid transit system serving Delhi and its satellite cities of Ghaziabad, Faridabad, Gurgaon, Noida, Bahadurgarh and Ballabhgarh, in the National Capital Region of India.<br> It is by far the largest and busiest metro
+                in India, and second<br> oldest after the Kolkata Metr </p>
+            <img src="https://thumbs.dreamstime.com/z/delhi-metro-station-new-india-dec-network-consists-five-colour-coded-lines-red-blue-green-yellow-49886879.jpg" height="700">
+        </div>
+
+        <div class="card text-center" id="news">
+            <div class="card-header">
+                <b>Fare Calculation</b>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"> <label>Source station:</label>
+                    <select id="demo">
+    <option value="Botanical Garden">Botanical Garden</option>
+    <option value="Noida Sec 17">Noida Sec 17</option>
+    <option value="Noida Sec 18">Noida Sec 18</option>
+    <option value="New Ashok Nagar">New Ashok Nagar</option>
+    <option value="Mayur Vihar">Mayur Vihar</option>
+    <option value="Akshardham">Akshardham</option>
+    <option value="Yamuna Bak">Yamuna Bank</option>
+    <option value="Rajiv Chowk">Rajiv Chowk</option>
+  </select>
+                    <br><br>
+
+                    <label>Destination station:</label>
+                    <select id="demo1">
+    <option value="Botanical Garden">Botanical Garden</option>
+    <option value="Noida Sec 17">Noida Sec 17</option>
+    <option value="Noida Sec 19">Noida Sec 18</option>
+    <option value="New Ashok Nagar">New Ashok Nagar</option>
+    <option value="Mayur Vihar">Mayur Vihar</option>
+    <option value="Akshardham">Akshardham</option>
+    <option value="Yamuna Bank">Yamuna Bank</option>
+    <option value="Rajiv Chowk">Rajiv Chowk</option>  
+  </select>
+                    <br><br>
+                    <!--coupon-->
+                    <label>Apply Coupon:</label>
+                    <select id="demo2">
+    <option value="Super20">Super20</option>
+    <option value="Flat50">Flat50</option>
+    <option value="New10">New10</option>  
+  </select><br><br>
+
+
+                    <button type="button" class="btn btn-success" onclick="m()">Submit</button>
+                    </p>
+            </div>
+
+            <p class="card-text">
+        </div>
+        <div class="card-footer text-muted">
+            <p id="final_fare" style="text-align: center">Your fare will be displayed here:</p>
+            <div class="card-footer text-muted">
+                <p id="gst_fare" style="text-align: center">Your fare after gst applied will be displayed here :</p>
+                <!--coupon-->
+                <div class="card-footer text-muted">
+                    <p id="c_fare" style="text-align: center">Your final fare :</p>
+                </div>
+            </div>
+
+            <!-- Optional JavaScript -->
+            <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    </body>
+
+</html>
